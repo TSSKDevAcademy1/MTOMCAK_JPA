@@ -7,14 +7,11 @@ import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -62,6 +59,21 @@ public class Person {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Company employer;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	List<Project> projects = new ArrayList<>();
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+	
+	public void addProject(Project project){
+	projects.add(project);
+	}
+
 	@OneToOne
 	private Car car;
 	

@@ -54,6 +54,22 @@ public class Company {
 	@OneToMany
 	private List<Person> employees = new ArrayList<>();
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+	private List<Project> projects = new ArrayList<>();
+	
+	public List<Project> getProject() {
+		return projects;
+	}
+
+	public void setProject(List<Project> project) {
+		this.projects = project;
+	}
+	
+	public void addProject(Project project)
+	{
+		projects.add(project);
+	}
+
 	public String getName() {
 		return name;
 	}
